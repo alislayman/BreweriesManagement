@@ -9,7 +9,7 @@ namespace Data.Mock
 {
     public class WholesalerStockDataManager : IWholesalerStockDataManager
     {
-        public AddItemOutput<WholesalerStock> AddStock(WholesalerStockToAdd wholesalerStockToAdd)
+        public AddItemOutput<WholesalerStock> AddStock(WholesalerStock wholesalerStock)
         {
             throw new NotImplementedException();
         }

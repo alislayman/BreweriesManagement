@@ -21,7 +21,9 @@ namespace Business
 
         public string GetBeerName(Guid beerID)
         {
-            throw new NotImplementedException();
+            var beer = _dataManager.GetBeer(beerID);
+            beer.ThrowIfNotFound("beer", beerID);
+            return beer.Name;
         }
 
         public GetBeersByBreweryOutput GetBeersByBrewery(GetBeersByBreweryInput input)
@@ -50,12 +52,61 @@ namespace Business
 
         public AddItemOutput<Beer> AddBeer(Beer beer)
         {
-            throw new NotImplementedException();
+            AddItemOutput<Beer> output = new AddItemOutput<Beer>()
+            {
+                Item = beer,
+                Result = ActionResult.Succeeded
+            };
+
+            try
+            {
+                Guid? addedBeerID = _dataManager.AddBeer(beer);
+                if (!addedBeerID.HasValue)
+                {
+                    output.Result = ActionResult.Failed;
+                    output.Message = "Cannot add this beer to this brewery (Check duplication)";
+                }
+                else
+                {
+                    beer.ID = addedBeerID.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = ActionResult.Failed;
+                output.Message = ex.Message;
+            }
+
+            return output;
         }
 
         public DeleteItemOutput<Beer> DeleteBeer(Guid beerID)
         {
-            throw new NotImplementedException();
+            DeleteItemOutput<Beer> output = new DeleteItemOutput<Beer>()
+            {
+                Result = ActionResult.Succeeded
+            };
+
+            try
+            {
+                Beer beer = _dataManager.DeleteBeer(beerID);
+                if (beer == null)
+                {
+                    output.Result = ActionResult.Failed;
+                    output.Message = "Cannot find a beer with this ID";
+                }
+                else
+                {
+                    output.Item = beer;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = ActionResult.Failed;
+                output.Message = ex.Message;
+            }
+
+            return output;
         }
 
         public Decimal GetBeerRetailPrice(Guid beerID)

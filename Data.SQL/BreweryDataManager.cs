@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,20 @@ namespace Data.SQL
     {
         public Brewery GetBrewery(Guid id)
         {
-            throw new NotImplementedException();
+            Brewery brewery = null;
+            using (var db = new Model())
+            {
+                var query = from b in db.Breweries
+                            where b.ID == id
+                            select b;
+
+                foreach (var item in query)
+                {
+                    brewery = item;
+                }
+            }
+
+            return brewery;
         }
     }
 }

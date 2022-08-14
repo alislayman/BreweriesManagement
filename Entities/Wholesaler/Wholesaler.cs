@@ -1,13 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
 namespace Entities
 {
-    public class Wholesaler : BaseEntity<Guid>
+    [Table("Wholesaler")]
+    public class Wholesaler
     {
-        public string WholesalerName { get; set; }
+        [Key]
+        [Column(Order = 0)]
+        public Guid ID { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [StringLength(100)]
+        public string Name { get; set; }
     }
 }

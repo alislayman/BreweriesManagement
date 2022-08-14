@@ -9,14 +9,18 @@ namespace WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            var jsonFormatter = new System.Net.Http.Formatting.JsonMediaTypeFormatter();
+            jsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects;
+            jsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Unspecified;
+
+            config.Formatters.Add(jsonFormatter);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

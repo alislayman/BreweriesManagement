@@ -22,6 +22,7 @@ namespace Entities
     public class ActionOutput<T>
     {
         public ActionResult Result { get; set; }
+        public string Message { get; set; }
         public T Item { get; set; }
     }
 

@@ -19,9 +19,9 @@ namespace Business
         }
         public static WholesalerStockManager Instance { get { return instance; } }
 
-        public AddItemOutput<WholesalerStock> AddStock(WholesalerStockToAdd wholesalerStockToAdd)
+        public AddItemOutput<WholesalerStock> AddStock(WholesalerStock wholesalerStock)
         {
-            return _dataManager.AddStock(wholesalerStockToAdd);
+            return _dataManager.AddStock(wholesalerStock);
         }
 
         public void UpdateStock(UpdateStockInput input)

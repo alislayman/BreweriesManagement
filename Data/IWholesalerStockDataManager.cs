@@ -9,6 +9,6 @@ namespace Data
 {
     public interface IWholesalerStockDataManager : IDataManager
     {
-        AddItemOutput<WholesalerStock> AddStock(WholesalerStockToAdd wholesalerStockToAdd);
+        AddItemOutput<WholesalerStock> AddStock(WholesalerStock wholesalerStock);
     }
 }

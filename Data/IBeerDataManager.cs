@@ -10,5 +10,11 @@ namespace Data
     public interface IBeerDataManager : IDataManager
     {
         List<Beer> GetBeers(Guid? breweryID);
+
+        Beer GetBeer(Guid beerID);
+
+        Guid? AddBeer(Beer beer);
+
+        Beer DeleteBeer(Guid beerID);
     }
 }
