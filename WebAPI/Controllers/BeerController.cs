@@ -13,7 +13,8 @@ namespace WebAPI.Controllers
     public class BeerController : ApiController
     {
         [HttpGet]
-        public APIResponse<GetBeersByBreweryOutput> Get(Guid breweryID)
+        [Route("~/api/beers")]
+        public APIResponse<GetBeersByBreweryOutput> GetBeersByBreweryID(Guid breweryID)
         {
             APIResponse<GetBeersByBreweryOutput> apiResponse = new APIResponse<GetBeersByBreweryOutput>()
             {
@@ -41,7 +42,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public APIResponse<Beer> Post([FromBody] Beer beer)
+        [Route("~/api/beer")]
+        public APIResponse<Beer> AddBeer([FromBody] Beer beer)
         {
             APIResponse<Beer> apiResponse = new APIResponse<Beer>()
             {
@@ -74,7 +76,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public APIResponse<Beer> Delete(Guid beerID)
+        [Route("~/api/beer")]
+        public APIResponse<Beer> DeleteBeer(Guid beerID)
         {
             APIResponse<Beer> apiResponse = new APIResponse<Beer>()
             {

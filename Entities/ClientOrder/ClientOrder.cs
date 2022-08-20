@@ -8,7 +8,7 @@ namespace Entities
 {
     public class ClientOrder
     {
-        public int WholesalerID { get; set; }
+        public Guid WholesalerID { get; set; }
         public List<ClientBeerOrder> BeerOrders { get; set; }
     }
 }

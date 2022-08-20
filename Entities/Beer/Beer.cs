@@ -24,12 +24,15 @@ namespace Entities
         [Column(Order = 3)]
         public decimal AlcoholContent { get; set; }
 
-        public decimal? RetailPrice { get; set; }
-
         [Key]
         [Column(Order = 4)]
+        public decimal RetailPrice { get; set; }
+
+        [Key]
+        [Column(Order = 5)]
         public decimal WholesalePrice { get; set; }
 
-        public bool? IsDeleted { get; set; }
+        [Column(Order = 6)]
+        public bool IsDeleted { get; set; }
     }
 }

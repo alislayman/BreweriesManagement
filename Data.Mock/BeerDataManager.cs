@@ -26,7 +26,7 @@ namespace Data.Mock
             if (!breweryID.HasValue)
                 return _beers;
 
-            return _beers.Where(item => (!item.IsDeleted.HasValue || !item.IsDeleted.Value) && item.BreweryID == breweryID.Value).ToList();
+            return _beers.Where(item => (!item.IsDeleted) && item.BreweryID == breweryID.Value).ToList();
         }
 
         public Beer GetBeer(Guid beerID)
@@ -36,14 +36,24 @@ namespace Data.Mock
 
         public Guid? AddBeer(Beer beer)
         {
-            throw new NotImplementedException();
+            var existingBeer = GetBeers(beer.BreweryID).Find(item => string.Compare(item.Name, beer.Name, true) == 0);
+            if (existingBeer != null)
+                return null;
+
+            Guid newBeerID = Guid.NewGuid();
+            beer.ID = newBeerID;
+            _beers.Add(beer);
+            return newBeerID;
         }
 
         public Beer DeleteBeer(Guid beerID)
         {
-            throw new NotImplementedException();
+            var existingBeer = GetBeer(beerID);
+            if (existingBeer == null)
+                return null;
+
+            existingBeer.IsDeleted = true;
+            return existingBeer;
         }
-
-
     }
 }

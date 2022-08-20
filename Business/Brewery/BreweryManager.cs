@@ -25,5 +25,11 @@ namespace Business
             brewery.ThrowIfNotFound("brewery", breweryID);
             return brewery.Name;
         }
+
+        public Brewery GetBrewery(Guid breweryID)
+        {
+            var brewery = _dataManager.GetBrewery(breweryID);
+            return brewery;
+        }
     }
 }

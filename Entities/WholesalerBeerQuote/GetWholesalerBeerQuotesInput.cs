@@ -9,6 +9,6 @@ namespace Entities
     public class GetWholesalerBeerQuotesInput
     {
         public Guid WholesalerID { get; set; }
-        public List<int> BeerIDs { get; set; }
+        public List<Guid> BeerIDs { get; set; }
     }
 }

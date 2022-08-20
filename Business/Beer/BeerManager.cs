@@ -21,9 +21,15 @@ namespace Business
 
         public string GetBeerName(Guid beerID)
         {
-            var beer = _dataManager.GetBeer(beerID);
+            var beer = GetBeer(beerID);
             beer.ThrowIfNotFound("beer", beerID);
             return beer.Name;
+        }
+
+        public Beer GetBeer(Guid beerID)
+        {
+            var beer = _dataManager.GetBeer(beerID);
+            return beer;
         }
 
         public GetBeersByBreweryOutput GetBeersByBrewery(GetBeersByBreweryInput input)
@@ -60,6 +66,7 @@ namespace Business
 
             try
             {
+                OnBeforeAddBeerValidaton(beer);
                 Guid? addedBeerID = _dataManager.AddBeer(beer);
                 if (!addedBeerID.HasValue)
                 {
@@ -111,7 +118,18 @@ namespace Business
 
         public Decimal GetBeerRetailPrice(Guid beerID)
         {
-            throw new NotImplementedException();
+            decimal tvaPercentage = 0M;
+            var beer = _dataManager.GetBeer(beerID);
+            beer.ThrowIfNotFound("beer", beerID);
+
+            return beer.RetailPrice * (1 + (tvaPercentage / 100M));
+        }
+
+        private void OnBeforeAddBeerValidaton(Beer beer)
+        {
+            beer.ThrowIfNull("Beer");
+            var brewery = BreweryManager.Instance.GetBrewery(beer.BreweryID);
+            brewery.ThrowIfNotFound("brewery", beer.BreweryID);
         }
     }
 }

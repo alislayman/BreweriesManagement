@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "01c622d9-c453-4f9c-b431-7cfad7a23c15",
+		"name": "BreweriesManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8101513"
+	},
+	"item": [
+		{
+			"name": "GetBeersByBreweryID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44337/api/beers?breweryID=77F2B686-AABF-4ED1-B9E4-506D5E9BDA88",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"api",
+						"beers"
+					],
+					"query": [
+						{
+							"key": "breweryID",
+							"value": "77F2B686-AABF-4ED1-B9E4-506D5E9BDA88"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddBeer",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"test\",\r\n    \"BreweryID\":\"77F2B686-AABF-4ED1-B9E4-506D5E9BDA88\",\r\n    \"AlcoholContent\": 8,\r\n    \"RetailPrice\": 2,\r\n    \"WholesalePrice\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44337/api/beer/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"api",
+						"beer",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBeer",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44337/api/beer?beerID=3dcc5418-559b-4832-9640-5f05a5dbc549",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"api",
+						"beer"
+					],
+					"query": [
+						{
+							"key": "beerID",
+							"value": "3dcc5418-559b-4832-9640-5f05a5dbc549"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddOrUpdateWholesalerStock",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"BeerID\": \"6C9626E4-5FF0-4425-BDAB-D390FD9E7353\",\r\n    \"WholesalerID\":\"481B8CED-3FA6-4BC1-BEEE-2077E4F27FAB\",\r\n    \"NumberOfBeers\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44337/api/WholesalerStock",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"api",
+						"WholesalerStock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ClientRequestQuote",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"WholesalerID\":\"481B8CED-3FA6-4BC1-BEEE-2077E4F27FAB\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"6C9626E4-5FF0-4425-BDAB-D390FD9E7353\",\r\n            \"NumberOfBeers\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44337/api/client/quote",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44337",
+					"path": [
+						"api",
+						"client",
+						"quote"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"481b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"6c9626e4-5ff0-4425-bdab-d390fd9e7353\",\r\n            \"NumberOfBeers\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:15:34 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "378"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": {\n            \"TotalPrice\": 23.5,\n            \"Details\": [\n                {\n                    \"BeerName\": \"Saison Dupont - Organic Belgian Beer\",\n                    \"NumberOfBeers\": 10,\n                    \"PricePerItem\": 2.35,\n                    \"TotalPrice\": 23.5,\n                    \"TotalDiscountedPrice\": 22.325,\n                    \"AppliedDiscount\": \"5.00%\",\n                    \"Quote\": [\n                        \"A 5.00% discount is applied above 10 drinks\",\n                        \"A 10.00% discount is applied above 20 drinks\"\n                    ]\n                }\n            ]\n        },\n        \"errorCode\": null,\n        \"errorMessage\": null\n    },\n    \"responseCode\": 200\n}"
+				},
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"481b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"6c9626e4-5ff0-4425-bdab-d390fd9e7353\",\r\n            \"NumberOfBeers\": 5\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:16:19 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "371"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": {\n            \"TotalPrice\": 11.75,\n            \"Details\": [\n                {\n                    \"BeerName\": \"Saison Dupont - Organic Belgian Beer\",\n                    \"NumberOfBeers\": 5,\n                    \"PricePerItem\": 2.35,\n                    \"TotalPrice\": 11.75,\n                    \"TotalDiscountedPrice\": null,\n                    \"AppliedDiscount\": null,\n                    \"Quote\": [\n                        \"A 5.00% discount is applied above 10 drinks\",\n                        \"A 10.00% discount is applied above 20 drinks\"\n                    ]\n                }\n            ]\n        },\n        \"errorCode\": null,\n        \"errorMessage\": null\n    },\n    \"responseCode\": 200\n}"
+				},
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"481b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"6c9626e4-5ff0-4425-bdab-d390fd9e7353\",\r\n            \"NumberOfBeers\": 11\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:15:02 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "152"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": null,\n        \"errorCode\": \"Fld\",\n        \"errorMessage\": \"The number of beers ordered cannot be greater than the wholesaler's stock\"\n    },\n    \"responseCode\": 500\n}"
+				},
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"481b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"fc3e35c3-a0f4-47b2-adf5-6b72499c921a\",\r\n            \"NumberOfBeers\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:15:46 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "118"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": null,\n        \"errorCode\": \"Fld\",\n        \"errorMessage\": \"The beer must be sold by the wholesaler\"\n    },\n    \"responseCode\": 500\n}"
+				},
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"381b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"fc3e35c3-a0f4-47b2-adf5-6b72499c921a\",\r\n            \"NumberOfBeers\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:16:03 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "104"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": null,\n        \"errorCode\": \"Fld\",\n        \"errorMessage\": \"The wholesaler must exist\"\n    },\n    \"responseCode\": 500\n}"
+				},
+				{
+					"name": "ClientRequestQuote",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"WholesalerID\":\"481b8ced-3fa6-4bc1-beee-2077e4f27fab\",\r\n    \"BeerOrders\": [\r\n        {\r\n            \"BeerID\": \"6c9626e4-5ff0-4425-bdab-d390fd9e7353\",\r\n            \"NumberOfBeers\": 5\r\n        },\r\n        {\r\n            \"BeerID\": \"6c9626e4-5ff0-4425-bdab-d390fd9e7353\",\r\n            \"NumberOfBeers\": 3\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44337/api/client/quote",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44337",
+							"path": [
+								"api",
+								"client",
+								"quote"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Expires",
+							"value": "-1"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-AspNet-Version",
+							"value": "4.0.30319"
+						},
+						{
+							"key": "X-SourceFiles",
+							"value": "=?UTF-8?B?QzpcVXNlcnNcYWxpLnNsYXltYW5cRG9jdW1lbnRzXEdpdEh1YlxCcmV3ZXJpZXNNYW5hZ2VtZW50XFdlYkFQSVxhcGlcY2xpZW50XHF1b3Rl?="
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 19 Aug 2022 20:18:18 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "120"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"result\": {\n        \"data\": null,\n        \"errorCode\": \"Fld\",\n        \"errorMessage\": \"There can't be any duplicate in the order\"\n    },\n    \"responseCode\": 500\n}"
+				}
+			]
+		}
+	]
+}

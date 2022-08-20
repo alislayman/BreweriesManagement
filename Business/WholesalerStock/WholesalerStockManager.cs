@@ -19,19 +19,55 @@ namespace Business
         }
         public static WholesalerStockManager Instance { get { return instance; } }
 
-        public AddItemOutput<WholesalerStock> AddStock(WholesalerStock wholesalerStock)
+        public AddItemOutput<WholesalerStock> AddOrUpdateStock(WholesalerStock wholesalerStock)
         {
-            return _dataManager.AddStock(wholesalerStock);
-        }
+            AddItemOutput<WholesalerStock> output = new AddItemOutput<WholesalerStock>()
+            {
+                Result = ActionResult.Succeeded
+            };
 
-        public void UpdateStock(UpdateStockInput input)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                onBeforeAddStockValidation(wholesalerStock);
+
+                WholesalerStock affectedWholesalerStock = _dataManager.AddOrUpdateStock(wholesalerStock);
+                if (affectedWholesalerStock == null)
+                {
+                    output.Result = ActionResult.Failed;
+                    output.Message = "Cannot affect this wholesaler stock";
+                }
+                else
+                {
+                    output.Item = affectedWholesalerStock;
+                }
+            }
+            catch (Exception ex)
+            {
+                output.Result = ActionResult.Failed;
+                output.Message = ex.Message;
+            }
+
+            return output;
         }
 
         public GetWholesalerStockDetailsOutput GetWholesalerStockDetails(GetWholesalerStockDetailsInput input)
         {
             throw new NotImplementedException();
+        }
+
+        public Dictionary<Guid, WholesalerStock> GetWholesalerStocksByBeerID(Guid wholesalerID)
+        {
+            var wholesalerStocks = _dataManager.GetWolesalerStocks(wholesalerID);
+            return wholesalerStocks.ToDictionary(item => item.BeerID, item => item);
+        }
+
+        private void onBeforeAddStockValidation(WholesalerStock wholesalerStock)
+        {
+            wholesalerStock.ThrowIfNull("wholesalerStock");
+            var beer = BeerManager.Instance.GetBeer(wholesalerStock.BeerID);
+            beer.ThrowIfNotFound("Beer", wholesalerStock.BeerID);
+            var wholesaler = WholesalerManager.Instance.GetWholesaler(wholesalerStock.WholesalerID);
+            wholesaler.ThrowIfNotFound("Wholesaler", wholesalerStock.WholesalerID);
         }
     }
 }

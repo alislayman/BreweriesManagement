@@ -9,9 +9,56 @@ namespace Data.SQL
 {
     public class WholesalerStockDataManager : IWholesalerStockDataManager
     {
-        public AddItemOutput<WholesalerStock> AddStock(WholesalerStock wholesalerStock)
+        public WholesalerStock AddOrUpdateStock(WholesalerStock wholesalerStock)
         {
-            throw new NotImplementedException();
+            WholesalerStock existingWholesalerStock = null;
+            using (var db = new Model())
+            {
+                var query = from ws in db.WholesalerStocks
+                            where ws.BeerID == wholesalerStock.BeerID && ws.WholesalerID == wholesalerStock.WholesalerID
+                            select ws;
+
+                foreach (var item in query)
+                {
+                    existingWholesalerStock = item;
+                }
+
+                if (existingWholesalerStock == null)
+                {
+                    db.WholesalerStocks.Add(wholesalerStock);
+                    db.SaveChanges();
+                    foreach (var item in query)
+                    {
+                        existingWholesalerStock = item;
+                    }
+                }
+                else
+                {
+                    db.WholesalerStocks.Attach(existingWholesalerStock);
+                    existingWholesalerStock.NumberOfBeers += wholesalerStock.NumberOfBeers;
+                    db.SaveChanges();
+                }
+            }
+
+            return existingWholesalerStock;
+        }
+
+        public List<WholesalerStock> GetWolesalerStocks(Guid wholesalerId)
+        {
+            List<WholesalerStock> wholesalerStocks = new List<WholesalerStock>();
+            using (var db = new Model())
+            {
+                var query = from ws in db.WholesalerStocks
+                            where ws.WholesalerID == wholesalerId
+                            select ws;
+
+                foreach (var item in query)
+                {
+                    wholesalerStocks.Add(item);
+                }
+            }
+
+            return wholesalerStocks;
         }
     }
 }

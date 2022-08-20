@@ -11,6 +11,7 @@ namespace Entities
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Key]
@@ -21,9 +22,7 @@ namespace Entities
         [Column(Order = 2)]
         public Guid WholesalerID { get; set; }
 
-        [Key]
         [Column(Order = 3)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int NumberOfBeers { get; set; }
     }
 }

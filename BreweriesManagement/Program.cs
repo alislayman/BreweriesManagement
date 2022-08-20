@@ -12,6 +12,7 @@ namespace BreweriesManagement
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
         }
     }
 }

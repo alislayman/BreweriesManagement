@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManagerFactory.cs" />
+    <Compile Include="IWholesalerBeerQuoteDataManager.cs" />
+    <Compile Include="IWholesalerDataManager.cs" />
     <Compile Include="IWholesalerStockDataManager.cs" />
     <Compile Include="IBreweryDataManager.cs" />
     <Compile Include="IDataManager.cs" />

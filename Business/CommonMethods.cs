@@ -11,13 +11,18 @@ namespace Business
         public static void ThrowIfNull<T>(this T obj, string objectName) where T : class
         {
             if (obj == null)
-                throw new NullReferenceException($"{objectName} Cannot be null");
+                throw new NullReferenceException($"{objectName} cannot be empty");
         }
 
         public static void ThrowIfNotFound<T>(this T obj, string objectName, object objectID) where T : class
         {
+            obj.ThrowIfNotFound($"Invalid {objectName} ID: {objectID}");
+        }
+
+        public static void ThrowIfNotFound<T>(this T obj, string message) where T : class
+        {
             if (obj == null)
-                throw new NullReferenceException($"Invalid {objectName} ID: {objectID}");
+                throw new Exception(message);
         }
     }
 }

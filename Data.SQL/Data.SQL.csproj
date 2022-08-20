@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WholesalerBeerQuoteDataManager.cs" />
+    <Compile Include="WholesalerDataManager.cs" />
     <Compile Include="WholesalerStockDataManager.cs" />
     <Compile Include="BreweryDataManager.cs" />
     <Compile Include="BeerDataManager.cs" />

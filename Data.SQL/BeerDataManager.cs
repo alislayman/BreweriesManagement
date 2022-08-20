@@ -66,27 +66,27 @@ namespace Data.SQL
 
         public Beer DeleteBeer(Guid beerID)
         {
-            Beer existingbeer = null;
+            Beer existingBeer = null;
             using (var db = new Model())
             {
                 var query = from b in db.Beers
-                            where b.ID == beerID && (!existingbeer.IsDeleted.HasValue || !existingbeer.IsDeleted.Value)
+                            where b.ID == beerID && (!b.IsDeleted)
                             select b;
 
                 foreach (var item in query)
                 {
-                    existingbeer = item;
+                    existingBeer = item;
                 }
 
-                if(existingbeer != null)
+                if(existingBeer != null)
                 {
-                    db.Beers.Attach(existingbeer);
-                    db.Beers.Remove(existingbeer);
+                    db.Beers.Attach(existingBeer);
+                    existingBeer.IsDeleted = true;
                     db.SaveChanges();
                 }
             }
 
-            return existingbeer;
+            return existingBeer;
         }
     }
 }

@@ -58,6 +58,7 @@
     <Compile Include="Brewery\BreweryManager.cs" />
     <Compile Include="ClientOrder\ClientOrderManager.cs" />
     <Compile Include="CommonMethods.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WholesalerBeerQuote\WholesalerBeerQuoteManager.cs" />
     <Compile Include="WholesalerStock\WholesalerStockManager.cs" />
