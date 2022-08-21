@@ -5,6 +5,10 @@
 - Target framework for all projects: .Net Framework 4.7.2
 - Entity Framework 6 is used.
 - Unit Test Project is used containing some unit tests as demo.
+- To switch between SQL data and Mock data, a key has been added to to appSetting section in Web.config file:  
+key="OverriddenDataAssembly" with value="Data.Mock".
+By Default, the data layer will take the Data.SQL assembly, if the key exists, the data layer will take the assembly written in the value (Data.Mock in this case).
+The constructor of UnitTest class will force this key to Data.Mock in order to run the test methods on Mock data.
 
 ## Database schema & predefined data
 - check DBScript.sql file.
@@ -15,7 +19,7 @@
 - You can access swagger.ui using: {baseUrl}/swagger/ui/index.
 - Check BreweriesManagement.postman_collection.json file for postman collection.
 
-## Nice to have in future
+## More to do
 - UI/UX.
 - Complete unit tests.
 - Add history for wholesaler orders and client orders.
