@@ -1,7 +1,7 @@
 # Brewery and wholesale management
 
 ## Overview
-- A simple application (Web API based) to manage Brewery, wholesale, and client order.
+- A simple application (Web API based) to manage Brewery, Wholesaler, and client order.
 - Target framework for all projects: .Net Framework 4.7.2
 - Entity Framework 6 is used.
 - Unit Test Project is used containing some unit tests as demo.
